@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "LOVELY BOY • ULTRA PRO 🎤",
+  "short_name": "ULTRA PRO MIC",
+  "version": "10.0.0",
+  "description": "LOVELY BOY ULTRA PRO - Extreme Sound Booster, Echo & Noise Clear for WhatsApp Web.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://web.whatsapp.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://web.whatsapp.com/*"
+      ],
+      "js": [
+        "content/service.js",
+        "content/loader.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "core/injector.js"
+      ],
+      "matches": [
+        "https://web.whatsapp.com/*"
+      ]
+    }
+  ],
+  "action": {
+    "default_title": "LOVELY BOY • ULTRA PRO 🎤",
+    "default_popup": "popup/popup.html"
+  }
+}
