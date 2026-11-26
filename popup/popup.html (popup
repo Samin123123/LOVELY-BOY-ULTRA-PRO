@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>LOVELY BOY • ULTRA PRO</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body data-theme="rose">
+  <div id="petals-container" aria-hidden="true"></div>
+
+  <main class="panel">
+    <header class="hero">
+      <div class="brand">
+        <div class="eyebrow">LOVELY BOY • ULTRA PRO</div>
+        <h1>Sound<br>Monster</h1>
+        <p>Extreme Boost, Echo &amp; Noise Clear</p>
+      </div>
+      <div class="avatar-wrap">
+        <img class="avatar" src="../assets/profile.png" alt="Profile">
+        <span class="pro-badge">V10</span>
+      </div>
+    </header>
+
+    <section id="login" class="login glass-card">
+      <div class="lock">👑</div>
+      <h2>ULTRA PRO MIC</h2>
+      <p>Enter password to unlock controls</p>
+      <form id="loginForm">
+        <input id="password" type="password" placeholder="Enter password" autocomplete="current-password">
+        <button type="submit">UNLOCK</button>
+      </form>
+      <div id="loginError" role="status"></div>
+      <small>One-time unlock on this browser</small>
+    </section>
+
+    <section id="app" hidden>
+      <!-- Top Status & Master Switch -->
+      <div class="topline glass-card">
+        <span id="hookStatus" class="status">Waiting for WhatsApp Web…</span>
+        <label class="master">
+          <input id="enabled" type="checkbox">
+          <span class="toggle"></span> MIC ON
+        </label>
+      </div>
+
+      <!-- Visualizer & Theme Switcher -->
+      <div class="bar-row glass-card">
+        <div class="visualizer" id="visualizer">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="themes">
+          <button type="button" class="theme-dot active" data-set-theme="rose" title="Rose Glow"></button>
+          <button type="button" class="theme-dot" data-set-theme="cyber" title="Cyber Neon"></button>
+          <button type="button" class="theme-dot" data-set-theme="gold" title="Royal Gold"></button>
+        </div>
+      </div>
+
+      <!-- Quick Presets -->
+      <div class="presets">
+        <button type="button" class="preset-btn" data-preset="monster">🔥 Monster</button>
+        <button type="button" class="preset-btn" data-preset="studio">🎙️ Studio</button>
+        <button type="button" class="preset-btn" data-preset="echo">🌌 Echo Hall</button>
+        <button type="button" class="preset-btn" data-preset="bass">🔊 Heavy Bass</button>
+      </div>
+
+      <!-- 1. Monster Booster -->
+      <section class="sound-card glass-card">
+        <div class="card-head">
+          <span class="symbol">⚡</span>
+          <strong>Extreme Booster</strong>
+          <label class="mini"><input id="openMicOn" type="checkbox" checked><i></i></label>
+        </div>
+        <div class="sliders">
+          <label>GAIN BOOST<input id="gainDb" type="range" min="0" max="36" step="0.5" value="16"><output id="gainDbVal"></output></label>
+          <label>LOUDNESS<input id="loudness" type="range" min="0.5" max="15" step="0.1" value="3.5"><output id="loudnessVal"></output></label>
+        </div>
+      </section>
+
+      <!-- 2. Echo & Reverb -->
+      <section class="sound-card glass-card">
+        <div class="card-head">
+          <span class="symbol">🌊</span>
+          <strong>Pro Echo</strong>
+          <label class="mini"><input id="reverbEnabled" type="checkbox"><i></i></label>
+        </div>
+        <div class="sliders">
+          <label>ECHO DEPTH<input id="reverbWet" type="range" min="0" max="0.6" step="0.01" value="0.22"><output id="reverbWetVal"></output></label>
+          <label>ECHO REPEAT<input id="reverbFeedback" type="range" min="0" max="0.7" step="0.02" value="0.35"><output id="reverbFeedbackVal"></output></label>
+          <label>DELAY TIME<input id="reverbDelay" type="range" min="0.02" max="0.3" step="0.005" value="0.06"><output id="reverbDelayVal"></output></label>
+          <label>VOICE DRIVE<input id="drive" type="range" min="0" max="4" step="0.05" value="0.6"><output id="driveVal"></output></label>
+        </div>
+      </section>
+
+      <!-- 3. Noise Clear & Clarity -->
+      <section class="sound-card glass-card">
+        <div class="card-head">
+          <span class="symbol">🛡️</span>
+          <strong>Noise Clear &amp; Crisp</strong>
+          <label class="mini"><input id="noiseClearOn" type="checkbox" checked><i></i></label>
+        </div>
+        <div class="sliders">
+          <label>NOISE CUT<input id="noiseGateDb" type="range" min="-80" max="-20" step="1" value="-52"><output id="noiseGateDbVal"></output></label>
+          <label>CRISP CLARITY<input id="highShelfDb" type="range" min="-12" max="18" value="6"><output id="highShelfDbVal"></output></label>
+        </div>
+      </section>
+
+      <!-- 4. Bass & Tone -->
+      <section class="sound-card glass-card">
+        <div class="card-head">
+          <span class="symbol">🎛️</span>
+          <strong>Deep Bass &amp; Tone</strong>
+          <label class="mini"><input id="bassOn" type="checkbox" checked><i></i></label>
+        </div>
+        <div class="sliders">
+          <label>HEAVY BASS<input id="lowShelfDb" type="range" min="-12" max="20" value="6"><output id="lowShelfDbVal"></output></label>
+          <label>VOCAL PUNCH<input id="presenceDb" type="range" min="-12" max="18" value="4"><output id="presenceDbVal"></output></label>
+        </div>
+      </section>
+
+      <!-- Advanced Controls -->
+      <details class="advanced glass-card">
+        <summary>⚙️ Advanced Pro Controls</summary>
+        <div class="advanced-grid">
+          <label>Limiter ceiling<input id="limiterDb" type="range" min="-12" max="0" step="0.5" value="-1"><output id="limiterDbVal"></output></label>
+          <label>Boost ceiling<input id="maxBoost" type="range" min="1" max="24" value="15"><output id="maxBoostVal"></output></label>
+          <label>Compressor thresh<input id="thresholdDb" type="range" min="-60" max="0" value="-24"><output id="thresholdDbVal"></output></label>
+          <label>Compressor ratio<input id="ratio" type="range" min="1" max="20" step="0.5" value="6"><output id="ratioVal"></output></label>
+          <label>Sustain target<input id="sustainTargetDb" type="range" min="-24" max="12" value="-6"><output id="sustainTargetDbVal"></output></label>
+          <label>Sustain max gain<input id="sustainMaxGain" type="range" min="1" max="24" value="10"><output id="sustainMaxGainVal"></output></label>
+          <label class="check"><input id="sustain" type="checkbox" checked> Anti-duck sustain</label>
+          <label class="check"><input id="forceRawMic" type="checkbox" checked> Raw mic mode</label>
+          <label class="check"><input id="keepAlive" type="checkbox"> Mic keep-alive</label>
+        </div>
+      </details>
+
+      <footer>LOVELY BOY • ULTRA PRO V10 — Engineered for WhatsApp Web</footer>
+    </section>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>
